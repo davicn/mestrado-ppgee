@@ -6,7 +6,8 @@ from os.path import expanduser
 import sys
 sys.path.append('./')
 from functions.support import aux,edfArray
-
+from joblib import Parallel,delayed
+import matplotlib.pyplot as plt
 
 c1 = pd.DataFrame(
     data=np.load('data/emg_gnsz_train.npy'),
@@ -18,12 +19,32 @@ c2 = pd.DataFrame(
 
 HOME = expanduser('~')+'/edf/'
 
-for i in range(100):
-    raw = edfArray(HOME+c1.loc[i,'path'].replace('.tse','.edf'),'EMG')
-    v = aux(raw,np.var)
-    s = aux(raw,skew)
-    k = aux(raw,kurtosis) 
-    
+# Carregando sinais
+raws = Parallel(n_jobs=4)(
+    delayed(edfArray)(
+        HOME+c1.loc[i,'path'].replace('.tse','.edf'),'EMG') 
+        for i in range(10))
 
+# Calculando variância
+v = Parallel(n_jobs=4)(
+    delayed(aux)(i,np.var)
+    for i in raws)
 
+# Calculando variância
+s = Parallel(n_jobs=4)(
+    delayed(aux)(i,skew)
+    for i in raws)
+
+# Calculando variância
+k = Parallel(n_jobs=4)(
+    delayed(aux)(i,kurtosis)
+    for i in raws)
+
+fig = plt.figure()
+plt.plot(v[0])
+fig = plt.figure()
+plt.plot(s[0])
+fig = plt.figure()
+plt.plot(k[0])
+plt.show()
 
