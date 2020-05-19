@@ -5,7 +5,7 @@ FS = 256
 
 def FFT(x):
     # return np.abs(np.array([fftshift(fftfreq(FS)),fftshift(fft(x))]))
-    return fftshift(fft(x))
+    return np.var(fftshift(fft(x)))
 
 def energy(x):
     return np.sum(np.abs(x)**2)

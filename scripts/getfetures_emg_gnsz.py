@@ -6,6 +6,7 @@ from os.path import expanduser
 import sys
 sys.path.append('./')
 from functions.support import aux,edfArray
+from functions.features import FFT, energy
 from joblib import Parallel,delayed
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -19,6 +20,8 @@ c2 = pd.DataFrame(
     data=np.load('data/emg_train_n_seizure.npy'),
     columns=['path','freq','tempo','montage'])
 
+# c1 = c1.iloc[:10]
+# c2 = c2.iloc[:10]
 
 HOME = expanduser('~')+'/edf/'
 
@@ -34,6 +37,15 @@ raws_n = Parallel(n_jobs=4)(
         HOME+c2.loc[i,'path'].replace('.tse','.edf'),'EMG') 
         for i in range(len(c2)))
 
+# Calculando FFT
+fft_w = Parallel(n_jobs=4)(
+    delayed(aux)(i,FFT)
+    for i in raws_w)
+
+fft_n = Parallel(n_jobs=4)(
+    delayed(aux)(i,FFT)
+    for i in raws_n)
+
 # Calculando variância
 v_w = Parallel(n_jobs=4)(
     delayed(aux)(i,np.var)
@@ -42,7 +54,6 @@ v_w = Parallel(n_jobs=4)(
 v_n = Parallel(n_jobs=4)(
     delayed(aux)(i,np.var)
     for i in raws_n)
-
 # Calculando Assimetria
 s_w = Parallel(n_jobs=4)(
     delayed(aux)(i,skew)
@@ -64,17 +75,20 @@ k_n = Parallel(n_jobs=4)(
 v_w_ = np.array([])
 s_w_ = np.array([])
 k_w_ = np.array([])
+fft_w_ = np.array([])
+
 
 for i in range(len(c1)):
     start,end = c1.loc[i,['inicio','fim']].to_numpy().astype(int)
     v_w_ = np.append(v_w_,v_w[i][start:end])
     s_w_ = np.append(s_w_,s_w[i][start:end])
     k_w_ = np.append(k_w_,k_w[i][start:end])
+    fft_w_ = np.append(fft_w_,fft_w[i][start:end])
 
-col = ['var','skew','kur','class']
+col = ['var','skew','kur','fft','class']
 
 d1 = pd.DataFrame(
-    data=np.array(np.array([v_w_,k_w_,s_w_,np.repeat('yes',len(v_w_))]).T),
+    data=np.array(np.array([v_w_,k_w_,s_w_,fft_w_,np.repeat('yes',len(v_w_))]).T),
     columns=col
 )
 
@@ -86,14 +100,17 @@ rand_index = lambda x1,x2:np.random.randint(x1,size=x2)
 v_n_ = np.array([])
 s_n_ = np.array([])
 k_n_ = np.array([])
+fft_n_ = np.array([])
+
 
 for i in range(len(c2)):
     v_n_ = np.append(v_n_,v_n[i])
     s_n_ = np.append(s_n_,s_n[i])
     k_n_ = np.append(k_n_,k_n[i])
+    fft_n_ = np.append(fft_n_,fft_n[i])
 
 d2 = pd.DataFrame(
-    data=np.array(np.array([v_n_,k_n_,s_n_,np.repeat('no',len(v_n_))]).T),
+    data=np.array(np.array([v_n_,k_n_,s_n_,fft_n_,np.repeat('no',len(v_n_))]).T),
     columns=col
 )
 
@@ -106,4 +123,5 @@ d2 = d2.loc[r_,:]
 
 d = pd.concat([d1,d2])
 d.to_csv('testando.csv',index=False)
-
+# 
+# 
