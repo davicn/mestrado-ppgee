@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import seaborn as sns
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -25,12 +25,12 @@ def metrics(cm):
           np.round((100*VN/(VN+FP)), decimals=3))
 
 
-def plot_cm(cm):
-    con_df = pd.DataFrame(data=cm, columns=['No', 'Yes'])
-    sns.heatmap(con_df, annot=True, cmap=plt.cm.Blues)
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+# def plot_cm(cm):
+    # con_df = pd.DataFrame(data=cm, columns=['No', 'Yes'])
+    # sns.heatmap(con_df, annot=True, cmap=plt.cm.Blues)
+    # plt.tight_layout()
+    # plt.ylabel('True label')
+    # plt.xlabel('Predicted label')
 
 
 def conf_matrix(y, y_pred):
