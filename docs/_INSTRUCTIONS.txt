@@ -1,0 +1,57 @@
+File: _INSTRUCTIONS.txt
+Database: TUH EEG Seizure Corpus (TUSZ)
+Version: 1.5.1
+-------------------------------------------------------------------------------
+
+This is a simplified version of the TUSZ Corpus. This release contains
+two things: edf files and annotation files.
+
+The edf files are located in the directoy name "./edf". You can easily
+locate them using find:
+
+ find . -name "*.edf"
+
+The annotation files are stored here:
+
+ _DOCS/ref_train.txt => training data
+ _DOCS/ref_dev.txt => dev data
+
+There is also a held-out eval set that is not included in this release.
+
+The annotation files contain records of the form:
+
+ 00000492_s003_t000 0.0000 6.2825 bckg 1.0000
+ 00000492_s003_t000 6.2825 35.8875 seiz 1.0000
+
+The first field is the unique basename of an edf file:
+
+nedc_000_[1]: find . -name "*00000492_s003_t000.edf"
+./edf/train/01_tcp_ar/004/00000492/s003_2003_07_18/00000492_s003_t000.edf
+
+The second two fields are the start and stop times of the event
+respectively. The next field is the label ("seiz" or "bckg"). The last
+field is the confidence(which is always 1.0 for manually labeled
+data).
+
+Before you attempt to process the data, please review the following
+papers that describe the data:
+
+ _DOCS/00_dbeeg.pdf: An overview of the corpus
+ _DOCS/01_elect.pdf: An overview of how the data is stored in an edf file
+ _DOCS/02_annot.pdf: A description of how we annotated the data (unfinished)
+ _DOCS/03_score.pdf: An overview of the scoring algorithm
+
+Demonstration software that reads edf files in Python is located here:
+
+ https://www.isip.piconepress.com/projects/tuh_eeg/downloads/nedc_pystream/
+
+Other useful resources are located here:
+
+ https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml
+
+If you have any additional comments or questions about the data,
+please direct them to help@nedcdata.org.
+
+Best regards,
+
+Joe Picone
