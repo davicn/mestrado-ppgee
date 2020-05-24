@@ -1,0 +1,31 @@
+Class Code;Class No.;Event Name;Signs;Locality;Description
+NULL;0;No Event;N/A;N/A;An unclassified event
+SPSW;1;Spike/Sharp and Wave;Electrographic;All;"Spike and wave/complexes , sharp and wave/complexes"
+GPED;2;Generalized Periodic Epileptiform Discharges;Electrographic;Generalized;Diffused periodic discharges
+PLED;3;Periodic Lateralized Epileptiform Discharges;Electrographic;Hemispheric/Focal;Focal periodic discharges
+EYBL;4;Eye blink;Clinical & Electrographic;Focal;"A specific type of sharp, high amplitude eye movement artifact corresponding to blinks"
+ARTF;5;Artifacts (All);Clinical & Electrographic;All;"Any non-brain activity electrical signal, such as those due to equipment or environmental factors"
+BCKG;6;Background;Electrographic;N/A;Baseline/non-interesting events
+SEIZ;7;Seizure;Clinical &| Electrographic;All;Common seizure class which can include all types of seizure
+FNSZ;8;Focal Non-Specific Seizure;Electrographic;Hemispheric/Focal;Focal seizures which cannot be specified with its type
+GNSZ;9;Generalized Non-Specific Seizure;Electrographic;Generalized;Generalized seizures which cannot be further classified into one of the groups below
+SPSZ;10;Simple Partial Seizure;Clinical & Electrographic;All;"Partial seizures during consciousness; Type specified by clinical signs only"
+CPSZ;11;Complex Partial Seizure;Clinical & Electrographic;All;"Partial Seizures during unconsciousness; Type specified by clinical signs only"
+ABSZ;12;Absence Seizure;Clinical & Electrographic;Generalized;"Absence Discharges observed on EEG; patient loses consciousness for few seconds (Petit Mal)"
+TNSZ;13;Tonic Seizure;Clinical & Electrographic;All;Stiffening of body during seizure (EEG effects disappears)
+CNSZ;14;Clonic Seizure;Clinical & Electrographic;All;Jerking/shivering of body during seizure
+TCSZ;15;Tonic Clonic Seizure;Clinical & Electrographic;All;At first stiffening and then jerking of body (Grand Mal)
+ATSZ;16;Atonic Seizure;Clinical & Electrographic;N/A;Sudden loss of muscle tone
+MYSZ;17;Myoclonic Seizure;Clinical & Electrographic;N/A;Myoclonous jerks of limbs
+NESZ;18;Non-Epileptic Seizure;Clinical & Electrographic;N/A;Any non-epileptic seizure observed. Contains no electrographic signs.
+INTR;19;Interesting Patterns;Electrographic;All;Any unusual or interesting patterns observed that don't fit into the above classes.
+SLOW;20;Slowing;Electrographic;All;A brief decrease in frequency
+EYEM;21;Eye Movement Artifact;Clinical & Electrographic;Focal;A very common frontal/prefrontal artifact seen when the eyes move
+CHEW;22;Chewing Artifact;Clinical & Electrographic;All;"A specific artifact involving multiple channels that corresponds with patient chewing, “bursty”"
+SHIV;23;Shivering Artifact;Clinical & Electrographic;All;"A specific, sustained sharp artifact that corresponds with patient shivering."
+MUSC;24;Muscle Artifact;Clinical & Electrographic;All;"A very common, high frequency, sharp artifact that corresponds with agitation/nervousness in a patient."
+ELPP;25;Electrode Pop Artifact;Clinical & Electrographic;Focal;A short artifact characterized by channels using the same electrode “spiking” with perfect symmetry.
+ELST;26;Electrostatic Artifact;Clinical & Electrographic;All;"Artifact caused by movement or interference on the electrodes, variety of morphologies."
+CALB;27;Calibration Artifact;Clinical & Electrographic;All;Artifact caused by calibration of the electrodes. Appears as a flattening of the signal in the beginning of files.
+HPHS;28;Hypnagogic Hypersynchrony;Electrographic;Generalized;A brief period of high amplitude slow waves.
+TRIP;29;Triphasic Wave;Electrographic;Generalized;"Large, three-phase waves frequently caused by an underlying metabolic condition."
