@@ -53,13 +53,26 @@ raws_n = Parallel(n_jobs=4)(
 #     for i in raws_n)
 
 # # Calculando variância
-v_w = Parallel(n_jobs=4)(delayed(aux)(i,kurtosis) for i in raws_w)
+v_w = Parallel(n_jobs=4)(delayed(aux)(i, kurtosis) for i in raws_w)
 
-v_n = Parallel(n_jobs=4)(delayed(aux)(i,kurtosis) for i in raws_n)
+v_n = Parallel(n_jobs=4)(delayed(aux)(i, kurtosis) for i in raws_n)
 
-print([len(i) for i in v_n])
-# fig1 = plt.figure()
-# plt.plot(v_n,'o')
+gv_n, gv_w = [], []
+
+for i in v_w:
+    gv_w.extend(i)
+
+for i in v_n:
+    gv_n.extend(i)
+
+print(len(gv_w))
+print(len(gv_n))
+
+# print([len(i) for i in v_n])
+
+fig1 = plt.figure()
+plt.plot(gv_w,'o')
+plt.show()
 # plt.plot(v_w,'o')
 
 # fig2 = plt.figure()
