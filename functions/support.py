@@ -83,6 +83,10 @@ tcp03 = pd.DataFrame(tcp03)
 def sub(x1,x2):
     return np.subtract(x1,x2)
 
+@njit
+def med(x):
+    return np.array([np.mean(x[:,i]) for i in range(x.shape[1])])
+
 def aux(x, func):
     fs = 256
     m = np.zeros(x.shape[0]//fs)
