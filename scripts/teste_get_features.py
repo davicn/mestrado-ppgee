@@ -70,6 +70,12 @@ vec2 = np.array([support.aux(df2.iloc[i].to_numpy(),np.var) for i in range(len(d
 vec1_ = support.med(vec1)
 vec2_ = support.med(vec2)
 
+y1 = np.repeat('Com crise',len(vec1_))
+y2 = np.repeat('Sem crise',len(vec2_))
+
+y = np.hstack((y1,y2))
+
+
 print(vec1_.shape)
 print(vec2_.shape)
 
