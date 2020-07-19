@@ -89,13 +89,8 @@ def aux(x, func):
     return m
 
 
-def edfArray(path):
+def read_edf(path):
     raw = mne.io.read_raw_edf(path, preload=True).to_data_frame()
-    # sig = ''
-    # for i in raw.columns:
-    # if label in i:
-    # sig = i
-    # return raw.loc[:, sig].to_numpy()
     return raw.T
 
 
@@ -112,4 +107,4 @@ def orgMontage(x, tipo):
 
     for i in range(len(use.columns)):
         m.append(x.loc[use.iloc[0,i],:] - x.loc[use.iloc[1,i],:])
-    return pd.DataFrame(data=np.array(m),index=use.columns)
+    return pd.DataFrame(data=np.array(m),index=use.columns) 

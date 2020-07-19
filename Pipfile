@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-numpy = "==1.18.5"
+numpy = "==1.16.1"
 pandas = "==1.0.4"
 matplotlib = "==3.2.1"
 seaborn = "==0.10.1"
@@ -23,6 +23,8 @@ six = "==1.15.0"
 threadpoolctl = "==2.1.0"
 PyWavelets = "==1.1.1"
 Cycler = "==0.10.0"
+pyedflib = "*"
+numba = "*"
 
 [requires]
 python_version = "3.7"

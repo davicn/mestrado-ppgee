@@ -1,38 +1,24 @@
 import numpy as np
 from os.path import expanduser
 import sys
+import pandas as pd
+import mne
+import matplotlib.pyplot as plt
+
 sys.path.append('./')
-# from functions.support import edfArray
-# from functions.features import FFT
-from functions.classifiers import Classifiers 
 
-import matplotlib.pyplot as plt 
+from functions import support
 
-# home = expanduser('~')+'/edf/'
-# 
-# c = data = np.load('data/train_seizure.npy')
-# 
+train = np.load('data/train_seizure.npy')
 
-# v = edfArray(home+c[0, 0].replace('.tse', '.edf'), 'EKG')
-# 
-# 
-# xf, yf = FFT(v)
-# yf = FFT(v[:256])
-# 
-# plt.plot(xf,yf)
-# plt.plot(yf)
-# plt.xlabel("Frequencia")
-# plt.ylabel("Amplitude")
-# plt.show()
+path = '/media/davi/2526467b-9f07-4ce5-9425-6d2b458567b7/home/davi/edf/'
 
-from sklearn import datasets
 
-iris = datasets.load_breast_cancer()
-X = iris.data[:, :2]  # we only take the first two features.
-y = iris.target
+eeg = support.read_edf(path+train[0,0].replace('tse','edf')) 
 
-C = Classifiers(X,y)
-C.knn()
-C.lda()
-C.nb()
-C.qda()
+signal = support.orgMontage(eeg,'01_tcp_ar')
+
+info = mne.create_info(ch_names=list(signal.index),sfreq=256)
+raw = mne.io.RawArray(signal.to_numpy(),info)
+
+raw.plot(title='Data from arrays',show=True, block=True) 
