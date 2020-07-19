@@ -1,5 +1,5 @@
 import numpy as np
-from numba import jit
+from numba import njit
 import mne
 import pandas as pd
 
@@ -79,7 +79,9 @@ tcp01 = pd.DataFrame(tcp01)
 tcp02 = pd.DataFrame(tcp02)
 tcp03 = pd.DataFrame(tcp03)
 
-
+@njit
+def sub(x1,x2):
+    return np.subtract(x1,x2)
 
 def aux(x, func):
     fs = 256
@@ -106,5 +108,5 @@ def orgMontage(x, tipo):
         use = tcp03
 
     for i in range(len(use.columns)):
-        m.append(x.loc[use.iloc[0,i],:] - x.loc[use.iloc[1,i],:])
+        m.append(sub(x.loc[use.iloc[0,i],:].to_numpy(),x.loc[use.iloc[1,i],:].to_numpy()))
     return pd.DataFrame(data=np.array(m),index=use.columns) 

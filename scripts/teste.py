@@ -29,4 +29,4 @@ d = pd.DataFrame(
     data=np.load('data/train_seizure.npy'),
     columns=['path','start','end','event','freq','time','montage','type'])
 print(d)
-d.to_pickle('train_seizure.pkl')
+# d.to_pickle('train_seizure.pkl')
