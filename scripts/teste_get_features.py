@@ -37,12 +37,18 @@ def get_end(t,n):
 
 PATH = '/media/davi/2526467b-9f07-4ce5-9425-6d2b458567b7/home/davi/edf/'
 
-w = pd.read_pickle('data/train_seizure.pkl')
-n = pd.read_pickle('data/train_n_seizure.pkl')
+w = pd.read_pickle('data/train_seizure4.pkl')
+n = pd.read_pickle('data/train_n_seizure4.pkl')
 
-w = w.query("type=='01_tcp_ar'")
+
+w = w[(w['freq']==256) & (w['type']=='01_tcp_ar')]
+w.index = np.arange(len(w))
+
 n = n[(n['freq']==256) & (n['type']=='01_tcp_ar')]
 n.index = np.arange(len(n))
+
+print(n.shape)
+print(w.shape)
 
 #%%
 
@@ -91,4 +97,3 @@ fig2 = plt.figure()
 plt.boxplot([vec1_,vec2_],labels=['Com crise','Sem crise'],showfliers=False)
 
 plt.show()
-
