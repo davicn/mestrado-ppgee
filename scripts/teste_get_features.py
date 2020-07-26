@@ -52,7 +52,7 @@ print(w.shape)
 
 #%%
 
-r1 = Parallel(n_jobs=4)(delayed(job1)(i) for i in range(len(w)))
+r1 = Parallel(n_jobs=4)(delayed(job1)(i) for i in range(700,741))
 
 df1 = pd.concat(r1,axis=1)
 
@@ -80,20 +80,24 @@ y1 = np.repeat('Com crise',len(vec1_))
 y2 = np.repeat('Sem crise',len(vec2_))
 
 y = np.hstack((y1,y2))
+print(y1.shape)
+print(y2.shape)
 
+v = np.hstack((vec1_,vec2_))
+# print(vec1_.shape)
+# print(vec2_.shape)
 
-print(vec1_.shape)
-print(vec2_.shape)
+aux_df = pd.DataFrame(data=np.array([v,y]).T,columns=['Variance','Class'])
+# aux_df['Classe'] = y 
 
-# aux_df = pd.DataFrame(data=np.array([vec1,vec2]).T,columns=['Com crise','Sem crise'])
+aux_df.to_pickle('dados8.pkl')
+# fig1 = plt.figure()
+# plt.plot(vec1_,'.',label='Com crise')
+# plt.plot(vec2_,'.',label='Sem crise')
+# plt.legend()
 
-fig1 = plt.figure()
-plt.plot(vec1_,'.',label='Com crise')
-plt.plot(vec2_,'.',label='Sem crise')
-plt.legend()
+# fig2 = plt.figure()
 
-fig2 = plt.figure()
+# plt.boxplot([vec1_,vec2_],labels=['Com crise','Sem crise'],showfliers=False)
 
-plt.boxplot([vec1_,vec2_],labels=['Com crise','Sem crise'],showfliers=False)
-
-plt.show()
+# plt.show()

@@ -1,0 +1,9 @@
+dados1.pkl
+dados2.pkl
+dados3.pkl
+dados4.pkl
+dados5.pkl
+dados6.pkl
+dados7.pkl
+dados8.pkl
+
