@@ -51,7 +51,7 @@ print(n.shape)
 print(w.shape)
 
 #%%
-
+'''
 r1 = Parallel(n_jobs=4)(delayed(job1)(i) for i in range(700,741))
 
 df1 = pd.concat(r1,axis=1)
@@ -101,3 +101,4 @@ aux_df.to_pickle('dados8.pkl')
 # plt.boxplot([vec1_,vec2_],labels=['Com crise','Sem crise'],showfliers=False)
 
 # plt.show()
+'''
